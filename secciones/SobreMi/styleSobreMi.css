@@ -1,0 +1,684 @@
+/* Estilos simplificados para Sección Sobre Mí */
+:root {
+    --blanco: #ffffff;
+    --negro: #000000;
+    --fondo: #f9f9f9;
+    --texto: #1a1c1c;
+    --gris-claro: #E5E5E5;
+    --gris-medio: #5e5e5e;
+    --gris-suave: #e2e2e2;
+    --max: 1280px;
+    /* Tipografía unificada */
+    --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    --font-display: 'metropolis', var(--font-sans);
+    --h1-mobile: 48px;
+    --h1-desktop: 72px;
+    --h2-mobile: 32px;
+    --h2-desktop: 40px;
+    --h3-mobile: 20px;
+    --h3-desktop: 24px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html {
+    font-family: var(--font-sans);
+    color: var(--texto);
+    background: var(--fondo)
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+.contenedor,
+#contenido-principal {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 80px 16px 128px
+}
+
+/* =====================
+   Tipografía consistente
+   ===================== */
+h1,
+.titulo,
+.titulo-principal {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--h1-mobile);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+h2,
+.titulo-seccion,
+.subtitulo-info {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--h2-mobile);
+}
+
+h3,
+.titulo-obra,
+.bloque-titulo,
+.subtitulo-seccion {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--h3-mobile);
+}
+
+p,
+.parrafo-intro,
+.descripcion,
+.detalle p {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--gris-medio);
+}
+
+@media(min-width:768px) {
+
+    h1,
+    .titulo,
+    .titulo-principal {
+        font-size: var(--h1-desktop);
+    }
+
+    h2,
+    .titulo-seccion,
+    .subtitulo-info {
+        font-size: var(--h2-desktop);
+    }
+
+    h3,
+    .titulo-obra,
+    .bloque-titulo,
+    .subtitulo-seccion {
+        font-size: var(--h3-desktop);
+    }
+}
+
+/* Barra navegación */
+.barra-navegacion,
+#encabezado {
+    background: var(--blanco);
+    border-bottom: 1px solid var(--gris-claro);
+    position: sticky;
+    top: 0;
+    z-index: 50
+}
+
+.barra-navegacion .fila,
+.encabezado-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 64px;
+    height: 80px
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--negro);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+}
+
+.menu,
+#navegacion {
+    display: none;
+    gap: 40px
+}
+
+.enlace-nav {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--gris-medio);
+    transition: color .25s;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.enlace-nav:hover {
+    color: var(--negro)
+}
+
+.enlace-nav.activo {
+    color: var(--negro);
+    border-bottom: 2px solid var(--negro);
+    padding-bottom: 4px
+}
+
+/* ==========================================================================
+   SISTEMA DE MENÚ HAMBURGUESA RESPONSIVO
+   ========================================================================== */
+.menu-hamburguesa {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    padding: 0;
+}
+
+.menu-hamburguesa span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--negro);
+    transition: all 0.3s ease;
+}
+
+.menu-hamburguesa.abierto span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-hamburguesa.abierto span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguesa.abierto span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 767px) {
+    .barra-navegacion .fila {
+        padding: 0 24px;
+    }
+
+    .menu-hamburguesa {
+        display: flex;
+    }
+
+    .barra-navegacion .menu {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--blanco);
+        border-top: 1px solid var(--gris-claro);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 99;
+    }
+
+    .barra-navegacion .menu.desplegado {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .enlace-nav {
+        font-size: 18px;
+    }
+}
+
+@media(min-width:768px) {
+    .menu {
+        display: flex;
+    }
+}
+
+/* Hero */
+.seccion-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 128px
+}
+
+.hero-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end
+}
+
+.etiqueta-profesion {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gris-medio);
+    text-transform: uppercase;
+    margin-bottom: 16px
+}
+
+.titulo-principal {
+    font-size: 48px;
+    line-height: 54px;
+    font-weight: 800;
+    margin-bottom: 32px
+}
+
+.hero-imagen {
+    aspect-ratio: 3/4;
+    border: 2px solid var(--negro);
+    position: relative;
+    overflow: hidden
+}
+
+.hero-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform .7s ease, filter .5s
+}
+
+.hero-imagen:hover img {
+    transform: scale(1.05);
+    filter: contrast(1.2) brightness(1.1)
+}
+
+.etiqueta-foto {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    background: var(--blanco);
+    border: 1px solid var(--negro);
+    padding: 8px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px
+}
+
+/* Biografía y visión */
+.seccion-biografia {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 128px
+}
+
+.tarjeta-biografia {
+    padding: 48px;
+    border: 1px solid var(--negro);
+    background: var(--blanco)
+}
+
+.titulo-seccion {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 32px;
+    text-transform: uppercase
+}
+
+.texto-biografia p {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--gris-medio);
+    margin-bottom: 16px
+}
+
+.etiquetas-habilidades {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px
+}
+
+.etiqueta {
+    padding: 4px 16px;
+    border: 1px solid var(--negro);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase
+}
+
+.columna-vision {
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+}
+
+.tarjeta-vision {
+    padding: 32px;
+    border: 1px solid var(--negro);
+    background: var(--fondo)
+}
+
+.subtitulo-seccion {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 16px;
+    text-transform: uppercase
+}
+
+.texto-cita {
+    font-style: italic;
+    color: var(--gris-medio)
+}
+
+.imagen-escultura {
+    aspect-ratio: 1/1;
+    border: 1px solid var(--negro);
+    overflow: hidden
+}
+
+.imagen-escultura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter .5s
+}
+
+.imagen-escultura:hover img {
+    filter: contrast(1.2) brightness(1.1)
+}
+
+/* Estadísticas */
+#seccion-estadisticas {
+    border-top: 1px solid var(--gris-claro);
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px
+}
+
+.dato {
+    display: flex;
+    flex-direction: column
+}
+
+.dato-numero {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700
+}
+
+.dato-descripcion {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gris-medio);
+    text-transform: uppercase
+}
+
+/* CTA */
+.seccion-contacto {
+    margin-top: 128px;
+    padding: 64px;
+    background: var(--negro);
+    color: var(--blanco);
+    text-align: center
+}
+
+.titulo-contacto {
+    font-weight: 700;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 32px
+}
+
+.descripcion-contacto {
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--gris-suave);
+    max-width: 640px;
+    margin: 0 auto 48px
+}
+
+.boton-contacto {
+    border: 1px solid var(--blanco);
+    padding: 16px 48px;
+    color: var(--blanco);
+    background: none;
+    cursor: pointer
+}
+
+.boton-contacto:hover {
+    background: var(--blanco);
+    color: var(--negro)
+}
+
+/* Footer */
+.footer {
+    background: var(--blanco);
+    border-top: 1px solid var(--gris-claro)
+}
+
+.pie-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 48px 16px
+}
+
+.pie-logo {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase
+}
+
+.pie-redes {
+    display: flex;
+    gap: 32px
+}
+
+.enlace-red {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gris-medio)
+}
+
+/* Responsive */
+@media(min-width:768px) {
+    .seccion-hero {
+        grid-template-columns: repeat(12, 1fr)
+    }
+
+    .hero-texto {
+        grid-column: span 8
+    }
+
+    .hero-imagen {
+        grid-column: span 4
+    }
+
+    .titulo-principal {
+        font-size: 72px;
+        line-height: 80px
+    }
+
+    .seccion-biografia {
+        grid-template-columns: repeat(12, 1fr)
+    }
+
+    .tarjeta-biografia {
+        grid-column: span 7
+    }
+
+    .columna-vision {
+        grid-column: span 5
+    }
+
+    #seccion-estadisticas {
+        flex-direction: row;
+        justify-content: space-between
+    }
+
+    .pie-contenido {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 48px 64px
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVO MÓVIL — Secciones de contenido
+   ========================================================================== */
+@media (max-width: 767px) {
+
+    /* Contenedor general */
+    .contenedor,
+    #contenido-principal {
+        padding: 48px 20px 80px;
+    }
+
+    /* Hero */
+    .seccion-hero {
+        gap: 32px;
+        margin-bottom: 64px;
+    }
+
+    .titulo-principal {
+        font-size: 36px;
+        line-height: 42px;
+        margin-bottom: 20px;
+    }
+
+    .hero-imagen {
+        aspect-ratio: 4/5;
+    }
+
+    /* Biografía */
+    .seccion-biografia {
+        gap: 20px;
+        margin-bottom: 64px;
+    }
+
+    .tarjeta-biografia {
+        padding: 28px 20px;
+    }
+
+    .titulo-seccion {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .texto-biografia p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .etiquetas-habilidades {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+    }
+
+    .etiqueta {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .tarjeta-vision {
+        padding: 24px 20px;
+    }
+
+    .subtitulo-seccion {
+        font-size: 18px;
+    }
+
+    .texto-cita {
+        font-size: 16px;
+    }
+
+    /* Estadísticas */
+    .seccion-estadisticas {
+        border-top: 1px solid var(--gris-claro);
+        padding: 48px 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .dato {
+        text-align: center;
+    }
+
+    .dato-numero {
+        font-size: 28px;
+    }
+
+    .dato-descripcion {
+        font-size: 11px;
+    }
+
+    /* CTA Contacto */
+    .seccion-contacto {
+        margin-top: 64px;
+        padding: 40px 20px;
+    }
+
+    .titulo-contacto {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .descripcion-contacto {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0 auto 32px;
+    }
+
+    .boton-contacto {
+        padding: 14px 32px;
+        font-size: 0.85rem;
+    }
+
+    /* Footer */
+    .pie-contenido {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+        padding: 32px 20px;
+    }
+
+    .pie-redes {
+        gap: 20px;
+    }
+
+    .pie-derechos {
+        font-size: 11px;
+    }
+}
+
+/* Pantallas muy pequeñas (iPhone SE, etc.) */
+@media (max-width: 430px) {
+
+    .contenedor,
+    #contenido-principal {
+        padding: 40px 16px 64px;
+    }
+
+    .titulo-principal {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .tarjeta-biografia {
+        padding: 24px 16px;
+    }
+
+    .seccion-contacto {
+        padding: 32px 16px;
+    }
+
+    .titulo-contacto {
+        font-size: 20px;
+    }
+}
