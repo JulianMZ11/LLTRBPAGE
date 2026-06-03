@@ -132,7 +132,7 @@
 </footer>
 
 <script>
-  // Control de apertura y cierre del menú responsivo
+  // Hamburguesa
   const botonHamburguesa = document.querySelector('.menu-hamburguesa');
   const panelMenu = document.querySelector('.menu');
 
@@ -141,7 +141,7 @@
     panelMenu.classList.toggle('desplegado');
   });
 
-  // Micro-interaction for form submission
+  // Micro-interaction
   document.getElementById('formularioContacto').addEventListener('submit', function (e) {
     e.preventDefault();
     const btn = this.querySelector('button');
@@ -163,15 +163,15 @@
     }, 1500);
   });
 
-  // Atmospheric parallax on visual card
-  document.addEventListener('mousemove', (e) => {
-    const visualCard = document.querySelector('.group img');
-    if (visualCard) {
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-      visualCard.style.transform = `scale(1.1) translate(${xAxis}px, ${yAxis}px)`;
-    }
-  });
+
+  //transision
+  window.addEventListener('DOMContentLoaded', () => {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 1s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
 </script>
 </body>
 
