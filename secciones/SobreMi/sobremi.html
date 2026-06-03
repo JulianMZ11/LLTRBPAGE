@@ -131,7 +131,7 @@
     </footer>
 
     <script>
-        // Control de apertura y cierre del menú responsivo
+        // hamburuesa
         const botonHamburguesa = document.querySelector('.menu-hamburguesa');
         const panelMenu = document.querySelector('.menu');
 
@@ -139,6 +139,14 @@
             botonHamburguesa.classList.toggle('abierto');
             panelMenu.classList.toggle('desplegado');
         });
+        //trasnsision
+        window.addEventListener('DOMContentLoaded', () => {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 1s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
     </script>
 </body>
 </html>
